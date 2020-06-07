@@ -1,0 +1,137 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron pb-4">
+            <h1 class="display-10">Calcular Investimento</h1>
+
+            <form [formGroup]="formInvestimento">
+                <div class="form-row">
+                    <div class="col-md-12"> <hr> </div>
+                    <div class="col-md-12"><h5>Investimento</h5></div>
+                    <div class="form-group col-md-3 ml-3">
+                        <label for="valorInicial">Valor Inicial:</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">R$:</div>
+                            <input type="text" class="form-control" id="valorInicial" placeholder="10.000,00" formControlName="valorInicial" currencyMask [options]="optionsMaskMoney">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 ml-3">
+                        <label for="valorParcela">Valor da parcela:</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">R$:</div>
+                            <input type="text" class="form-control" id="valorParcela" placeholder="1.000,00" formControlName="valorParcela" currencyMask [options]="optionsMaskMoney">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 ml-3">
+                        <label for="qntParcelas">Quantidade de parcelas:</label>
+                        <div class="input-group-prepend">
+                            <input type="text" class="form-control" id="qntParcelas" placeholder="10" formControlName="qntParcelas">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-1 ml-3">
+                        <label for="adiantamento">Adiantamento:</label>
+                        <div class="pl-3">
+                            <ui-switch labelOn="Sim" labelOff="Não" id="adiantamento" formControlName="adiantamento"></ui-switch>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-row" *ngIf="this.formInvestimento.get('adiantamento').value">
+
+                    <div class="col-md-12"> <hr> </div>
+                    <div class="col-md-12"><h5>Adiantamento</h5></div>
+                    
+                    <div class="col-md-3 ml-3">
+                        <label for="adiantamento-meses">Frequência de meses</label>
+                        <select class="custom-select form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                        
+                    </div>
+
+                    <div class="col-md-3 ml-3">
+                        <label for="adiantamento-parcelas">Quantidade de parcelas</label>
+                        <select class="custom-select form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-12 mt-4">
+                        <button type="submit" class="btn btn-secondary" (click)="onRelatorio()">
+                            Gerar relatório
+                        </button>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" *ngIf="isRelatorio">
+    <div class="col-md-12">
+        <div class="jumbotron pb-4">
+            <h1 class="display-10">Relatório</h1>
+           <hr>
+            <div class="form-group col-md-12 ml-3">
+                <span for="valorOriginal">Valor original da dívida: </span>
+                R$: 1000
+            </div>
+
+           <hr>
+            <div class="form-group col-md-12 ml-3">
+                <span for="valorOriginal">Juros ao mês: </span>
+                R$: 1000
+            </div>
+
+           <hr>
+            <div class="form-group col-md-12 ml-3">
+                <span for="valorOriginal">Valor da dívida com juros: </span>
+                R$: 1000
+            </div>
+
+           <hr>
+            <div class="form-group col-md-12 ml-3">
+                <span for="valorOriginal">Valor total do juros: </span>
+                R$: 1000
+            </div>
+
+           <hr>
+            <div class="form-group col-md-12 ml-3">
+                <span for="valorOriginal">Valor total da dívida: </span>
+                R$: 1000
+            </div>
+            <hr>
+            <div class="form-group col-md-12 ml-3">
+                <span for="valorOriginal">Quantidade de meses da dívida: </span>
+                R$: 1000
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>

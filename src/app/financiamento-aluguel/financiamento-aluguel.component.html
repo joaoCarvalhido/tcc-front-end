@@ -1,0 +1,217 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron pb-4">
+            <h1 class="display-10">Financiamento x Aluguel</h1>
+
+            <form [formGroup]="formFinanAlug">
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                    <div class="col-md-12">
+                        <h5>Financiamento</h5>
+                    </div>
+                    <div class="form-group col-md-3 ml-3">
+                        <label for="valorOriginalImovel">Valor original do imóvel: </label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">R$:</div>
+                            <input type="text" class="form-control" id="valorOriginalImovel" placeholder="10.000,00"
+                                formControlName="valorOriginalImovel" currencyMask [options]="optionsMaskMoney">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 ml-3">
+                        <label for="valorParcelaImovel">Valor da parcela:</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">R$:</div>
+                            <input type="text" class="form-control" id="valorParcelaImovel" placeholder="1.000,00"
+                                formControlName="valorParcelaImovel" currencyMask [options]="optionsMaskMoney">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 ml-3">
+                        <label for="qntParcelasImovel">Quantidade de parcelas:</label>
+                        <div class="input-group-prepend">
+                            <input type="text" class="form-control" id="qntParcelasImovel" placeholder="10"
+                                formControlName="qntParcelasImovel">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-1 ml-3">
+                        <label for="adiantamentoImovel">Adiantamento:</label>
+                        <div class="pl-3">
+                            <ui-switch labelOn="Sim" labelOff="Não" id="adiantamentoImovel"
+                                formControlName="adiantamentoImovel">
+                            </ui-switch>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-row mt-3" *ngIf="this.formFinanAlug.get('adiantamentoImovel').value">
+                    <div class="col-md-12">
+                        <h5>Adiantamento das parcelas do financiamento</h5>
+                    </div>
+
+                    <div class="col-md-3 ml-3">
+                        <label for="adiantamento-meses">Frequência de meses</label>
+                        <select class="custom-select form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-3 ml-3">
+                        <label for="adiantamento-parcelas">Quantidade de parcelas</label>
+                        <select class="custom-select form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ########################## ALUGUEL ########################## -->
+                
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                    <div class="col-md-12">
+                        <h5>Aluguel</h5>
+                    </div>
+
+                    <div class="form-group col-md-3 ml-3">
+                        <label for="valorAluguel">Valor do alguel:</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">R$:</div>
+                            <input type="text" class="form-control" id="valorParcelaImovel" placeholder="600,00"
+                                formControlName="valorParcelaImovel" currencyMask [options]="optionsMaskMoney">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 ml-3">
+                        <label for="qntParcelasAluguel">Quantidade de parcelas:</label>
+                        <div class="input-group-prepend">
+                            <input type="text" class="form-control input-read-only" id="qntParcelasAluguel"
+                                formControlName="qntParcelasAluguel" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-1 ml-3">
+                        <label for="investimento">Investimento:</label>
+                        <div class="pl-3">
+                            <ui-switch labelOn="Sim" labelOff="Não" id="investimento"
+                                formControlName="investimento">
+                            </ui-switch>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-3" *ngIf="this.formFinanAlug.get('investimento').value">
+                        <div class="col-md-12">
+                            <h5>Investimento com o dinheiro restante</h5>
+                        </div>
+    
+                        <div class="form-group col-md-3 ml-3">
+                            <label for="valorParcelaInvestimento">Parcela do investimento:</label>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text input-read-only">R$:</div>
+                                <input type="text" class="form-control" id="valorParcelaInvestimento" placeholder="400,00"
+                                    formControlName="valorParcelaInvestimento" currencyMask [options]="optionsMaskMoney">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3 ml-3">
+                            <label for="valorJurosInvestimento">Juros ao mês:</label>
+                            <div class="input-group-prepend">
+                                <input type="text" class="form-control" id="valorJurosInvestimento" placeholder="0,5"
+                                formControlName="valorJurosInvestimento" currencyMask [options]="optionsMaskMoney">
+                                <div class="input-group-text">%</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3 ml-3">
+                            <label for="qntParcelasInvestimento">Quantidade de parcelas:</label>
+                            <div class="input-group-prepend">
+                                <input type="text" class="form-control input-read-only" id="qntParcelasInvestimento"
+                                    formControlName="qntParcelasInvestimento" disabled>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+
+
+                <div class="form-row">
+                    <div class="col-md-12 mt-4">
+                        <button type="submit" class="btn btn-secondary" (click)="onRelatorio()">
+                            Gerar relatório
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="row" *ngIf="isRelatorio">
+                    <div class="col-md-12">
+                        <div class="jumbotron pb-4">
+                            <h1 class="display-10">Relatório</h1>
+                           <hr>
+                            <div class="form-group col-md-12 ml-3">
+                                <span for="valorOriginal">Valor original da dívida: </span>
+                                R$: 1000
+                            </div>
+                
+                           <hr>
+                            <div class="form-group col-md-12 ml-3">
+                                <span for="valorOriginal">Juros ao mês: </span>
+                                R$: 1000
+                            </div>
+                
+                           <hr>
+                            <div class="form-group col-md-12 ml-3">
+                                <span for="valorOriginal">Valor da dívida com juros: </span>
+                                R$: 1000
+                            </div>
+                
+                           <hr>
+                            <div class="form-group col-md-12 ml-3">
+                                <span for="valorOriginal">Valor total do juros: </span>
+                                R$: 1000
+                            </div>
+                
+                           <hr>
+                            <div class="form-group col-md-12 ml-3">
+                                <span for="valorOriginal">Valor total da dívida: </span>
+                                R$: 1000
+                            </div>
+                            <hr>
+                            <div class="form-group col-md-12 ml-3">
+                                <span for="valorOriginal">Quantidade de meses da dívida: </span>
+                                R$: 1000
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
