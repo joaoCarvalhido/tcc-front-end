@@ -24,7 +24,7 @@ export class FinanciamentoAluguelComponent implements OnInit {
       qntParcelasImovel: [null],
       adiantamentoImovel: [null],
       valorAluguel: [null],
-      qntParcelasAluguel: [10],
+      qntParcelasAluguel: [null],
       investimento: [null],
       valorParcelaInvestimento:[null],
       valorJurosInvestimento: [null],

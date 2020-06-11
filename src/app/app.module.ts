@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UiSwitchModule } from 'ngx-toggle-switch';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { FinanciamentoAluguelComponent } from './financiamento-aluguel/financiam
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     UiSwitchModule,
     ReactiveFormsModule,
     NgxCurrencyModule
