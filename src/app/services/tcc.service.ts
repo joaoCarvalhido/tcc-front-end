@@ -8,8 +8,9 @@ import { catchError, take, map } from 'rxjs/operators';
 })
 export class TccService {
 
-  private readonly API_URL_CALCULA_DESPESA = "http://localhost:8080/despesas";
-  private readonly API_URL_CALCULA_INVESTIMENTO = "http://localhost:8080/investimentos";
+  private readonly API_URL_DESPESA = "http://localhost:8080/despesas";
+  private readonly API_URL_INVESTIMENTO = "http://localhost:8080/investimentos";
+  private readonly API_URL_USUARIO = "http://localhost:8080/usuarios";
 
   private readonly headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -19,7 +20,16 @@ export class TccService {
   constructor(private http: HttpClient) { }
 
   calcularDespesas(despesa: any): Observable<any> {
-    return this.http.post<any>(this.API_URL_CALCULA_DESPESA, despesa)
+    return this.http.post<any>(this.API_URL_DESPESA, despesa)
+    .pipe(
+      catchError(error => this.handleError(error)),
+      take(1),
+      map(dados => dados)
+    );
+  }
+
+  getDespesaById(idDespesa: number): Observable<any> {
+    return this.http.get<any>(`${this.API_URL_DESPESA}/${idDespesa}`, {headers: this.headers})
     .pipe(
       catchError(error => this.handleError(error)),
       take(1),
@@ -29,12 +39,39 @@ export class TccService {
 
   calcularInvestimento(investimento: any): Observable<any> {
     console.log("SERVICE", investimento)
-    return this.http.post<any>(this.API_URL_CALCULA_INVESTIMENTO, investimento, {headers: this.headers}) /*
+    return this.http.post<any>(this.API_URL_INVESTIMENTO, investimento, {headers: this.headers}) 
     .pipe(
       catchError(error => this.handleError(error)),
       take(1),
       map(dados => dados)
-    ); */
+    ); 
+  }
+
+  cadastrarUsuario(usuario: any): Observable<any> {
+    return this.http.post<any>(this.API_URL_USUARIO, usuario, {headers: this.headers})
+    .pipe(
+      catchError(error => this.handleError(error)),
+      take(1),
+      map(dados => dados)
+    );
+  }
+
+  getUsuario(cdUsuario: any): Observable<any> {
+    return this.http.get<any>(this.API_URL_USUARIO, cdUsuario)
+    .pipe(
+      catchError(error => this.handleError(error)),
+      take(1),
+      map(dados => dados)
+    );
+  }
+
+  getUltimoUsuario(): Observable<any> {
+    return this.http.get<any>(`${this.API_URL_USUARIO}/ultimo`, {headers: this.headers})
+    .pipe(
+      catchError(error => this.handleError(error)),
+      take(1),
+      map(dados => dados)
+    );
   }
 
    /* ############## TRATAMENTO DE ERROS ############## */ 
