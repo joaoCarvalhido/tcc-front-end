@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-
+                    <!--
                     <div class="form-group col-md-1 ml-3">
                         <label for="adiantamento">Adiantamento:</label>
                         <div class="pl-3">
@@ -45,10 +45,11 @@
                             </ui-switch>
                         </div>
                     </div>
+                    -->
                 </div>
 
 
-
+                <!-- 
                 <div class="form-row" *ngIf="this.formInvestimento.get('adiantamento').value">
 
                     <div class="col-md-12">
@@ -91,6 +92,7 @@
                         </select>
                     </div>
                 </div>
+            -->
 
                 <div class="form-row">
                     <div class="col-md-12 mt-4">
@@ -107,43 +109,39 @@
 
 
 <div class="row" *ngIf="isRelatorio">
-    <div class="col-md-12">
+    <div class="col-md-10 offset-md-1">
         <div class="jumbotron pb-4">
             <h1 class="display-10">Relatório</h1>
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor original da dívida: </span>
-                R$: 1000
+                <span for="valorOriginal">Valor de cada parcela: </span>
+                R$: {{investimento?.valorParcela}}
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Juros ao mês: </span>
-                R$: 1000
+                <span for="valorOriginal">Quantidade de meses: </span>
+                {{investimento?.qntMeses}}
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor da dívida com juros: </span>
-                R$: 1000
+                <span for="valorOriginal">Rendimento mensal: </span>
+                {{investimento?.rendimentoMensal}} %
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor total do juros: </span>
-                R$: 1000
+                <span for="valorOriginal">Total do financiamento: </span>
+                R$: {{investimento?.totalFinal}}
             </div>
 
-            <hr>
+            <!--
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor total da dívida: </span>
-                R$: 1000
+                <span for="valorOriginal">Apenas rendimento: </span>
+                R$: {{totalFinal}}
             </div>
-            <hr>
-            <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Quantidade de meses da dívida: </span>
-                R$: 1000
-            </div>
+            -->
             <hr>
         </div>
     </div>

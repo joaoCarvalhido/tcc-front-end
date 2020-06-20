@@ -33,7 +33,7 @@
                         <label for="qntParcelasImovel">Quantidade de parcelas:</label>
                         <div class="input-group-prepend">
                             <input type="text" class="form-control" id="qntParcelasImovel" placeholder="10"
-                                formControlName="qntParcelasImovel">
+                                formControlName="qntParcelasImovel"  (change)="getMes()">
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@
 
                     <div class="col-md-3 ml-3">
                         <label for="adiantamento-meses">Frequência de meses</label>
-                        <select class="custom-select form-control">
+                        <select class="custom-select form-control" formControlName="freqMesesAdiantamento">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -73,7 +73,7 @@
 
                     <div class="col-md-3 ml-3">
                         <label for="adiantamento-parcelas">Quantidade de parcelas</label>
-                        <select class="custom-select form-control">
+                        <select class="custom-select form-control" formControlName="qntParcelasAdiantamento">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -102,8 +102,8 @@
                         <label for="valorAluguel">Valor do alguel:</label>
                         <div class="input-group-prepend">
                             <div class="input-group-text">R$:</div>
-                            <input type="text" class="form-control" id="valorParcelaImovel" placeholder="600,00"
-                                formControlName="valorParcelaImovel" currencyMask [options]="optionsMaskMoney">
+                            <input type="text" class="form-control" id="valorAluguel" placeholder="600,00"
+                                formControlName="valorAluguel" currencyMask [options]="optionsMaskMoney">
                         </div>
                     </div>
 
@@ -175,7 +175,7 @@
 
 
 <div class="row" *ngIf="isRelatorio">
-    <div class="col-md-12">
+    <div class="col-md-10 offset-md-1">
         <div class="jumbotron pb-4">
             <h1 class="display-10">Relatório</h1>
             <hr>

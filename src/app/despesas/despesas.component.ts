@@ -14,7 +14,7 @@ export class DespesasComponent implements OnInit {
   public formDespesa: FormGroup;
   public isRelatorio: boolean = false;
   private usuario: any;
-  private despesa: any;
+  public despesa: any;
 
   ngOnInit(): void {
     this.setForm();
@@ -31,6 +31,7 @@ export class DespesasComponent implements OnInit {
       valorParcela: [null],
       qntMeses: [null],
       adiantamento: [null],
+      cdTipoDespesa: [3],
       freqMesesAdiantamento: [null],
       qntParcelasAdiantamento: [null],
       usuario: this.fb.group({
@@ -58,6 +59,7 @@ export class DespesasComponent implements OnInit {
     );
 
     this.isRelatorio = true;
+    
   }
 
   public optionsMaskMoney: Object = {

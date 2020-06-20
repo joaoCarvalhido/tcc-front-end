@@ -9,15 +9,26 @@ import { TccService } from '../services/tcc.service';
 })
 export class InvestimentosComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private service: TccService) { }
+  constructor(private fb: FormBuilder, private tccService: TccService) { }
 
   public formInvestimento: FormGroup;
   public isRelatorio: boolean = false;
+  public usuario: any;
+  public investimento: any;
+  public total: number = 0;
+  public totalFinal: number = 0;
 
-  investimento: any;
 
   ngOnInit(): void {
     this.setForm();
+    
+    this.tccService.getUltimoUsuario()
+    .subscribe( 
+      dados => {
+        this.usuario = dados;
+        console.log("usuario", dados);
+      }
+    );
   }
 
   private setForm(): void {
@@ -26,32 +37,49 @@ export class InvestimentosComponent implements OnInit {
       valorParcela: [null],
       qntMeses: [null],
       rendimentoMensal: [null],//
-      adiantamento: [null]
+      adiantamento: [null],
+      usuario: this.fb.group({
+        idUsuario: [null],
+        nome: [null],
+        email: [null]
       })
+    })
+  }
+
+  calculaRendimento() {
+    let parcela = this.formInvestimento.get('valorParcela').value
+    let mes = this.formInvestimento.get('qntMeses').value
+    let investimento: number = parcela * mes;
+    let totalInvestido: number = this.total;
+
+    this.totalFinal = totalInvestido - investimento;
   }
 
   onRelatorio() {
-    this.calculaInvestimento();
+    this.formInvestimento.get('usuario.idUsuario').setValue(this.usuario.idUsuario);
+    this.formInvestimento.get('usuario.nome').setValue(this.usuario.nome);
+    this.formInvestimento.get('usuario.email').setValue(this.usuario.email);
+
+    console.log(this.formInvestimento.value);
+
+    
+    this.tccService.calcularInvestimento(this.formInvestimento.value)
+    .subscribe( 
+      dados => {
+        this.investimento = dados;
+        this.total = dados.totalFinal;
+        console.log("investimento:", dados);
+      }
+    );
 
     this.isRelatorio = true;
+    this.calculaRendimento();
+    
   }
 
   public optionsMaskMoney: Object = {
     prefix: '', thousands: ".", decimal: ',', precision: 2, align: "left"
   }
 
-  // ############################## Service ############################## //
-
-  public calculaInvestimento(): void{
-    this.service.calcularInvestimento(this.formInvestimento.value).
-    subscribe(
-      dados => {
-        console.log(dados);
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
   
 }
