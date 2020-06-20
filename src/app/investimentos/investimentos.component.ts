@@ -17,6 +17,8 @@ export class InvestimentosComponent implements OnInit {
   public investimento: any;
   public total: number = 0;
   public totalFinal: number = 0;
+  public isCarregar: boolean = false;
+  public dynamic: number;
 
 
   ngOnInit(): void {
@@ -56,11 +58,16 @@ export class InvestimentosComponent implements OnInit {
   }
 
   onRelatorio() {
+    this.isCarregar = true;
+    this.dynamic = 10; 
     this.formInvestimento.get('usuario.idUsuario').setValue(this.usuario.idUsuario);
     this.formInvestimento.get('usuario.nome').setValue(this.usuario.nome);
     this.formInvestimento.get('usuario.email').setValue(this.usuario.email);
 
     console.log(this.formInvestimento.value);
+    this.dynamic = 50;
+
+    
 
     
     this.tccService.calcularInvestimento(this.formInvestimento.value)
@@ -71,6 +78,7 @@ export class InvestimentosComponent implements OnInit {
         console.log("investimento:", dados);
       }
     );
+    this.dynamic = 100;
 
     this.isRelatorio = true;
     this.calculaRendimento();

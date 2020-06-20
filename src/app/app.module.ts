@@ -10,6 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgxCurrencyModule } from "ngx-currency";
 import { FinanciamentoAluguelComponent } from './financiamento-aluguel/financiamento-aluguel.component';
+import { LOCALE_ID } from '@angular/core';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+
+registerLocaleData(ptBr)
 
 @NgModule({
   declarations: [
@@ -23,12 +29,13 @@ import { FinanciamentoAluguelComponent } from './financiamento-aluguel/financiam
     HttpClientModule,
     UiSwitchModule,
     ReactiveFormsModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    ProgressbarModule.forRoot()
   ],
   exports: [
     //ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

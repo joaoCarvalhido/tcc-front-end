@@ -18,6 +18,8 @@ export class FinanciamentoAluguelComponent implements OnInit {
   public investimento: any;
   public usuario: any;
   public mes: any;
+  public dynamic: number = 0;
+  public isCarregar: boolean = false;
 
   ngOnInit(): void {
     this.setForm();
@@ -58,6 +60,7 @@ export class FinanciamentoAluguelComponent implements OnInit {
   }
 
   onRelatorio() {
+    this.isCarregar = true;
 
     this.formFinanAlug.get('usuario.idUsuario').setValue(this.usuario.idUsuario);
     this.formFinanAlug.get('usuario.nome').setValue(this.usuario.nome);
@@ -72,6 +75,8 @@ export class FinanciamentoAluguelComponent implements OnInit {
         console.log("financiamento:", dados);
       }
     );
+
+    this.dynamic = 20; 
     
 
    this.tccService.calcularDespesas(this.jsonAluguel())
@@ -82,6 +87,8 @@ export class FinanciamentoAluguelComponent implements OnInit {
      }
    );
 
+   this.dynamic = 60; 
+
    this.tccService.calcularInvestimento(this.jsonInvestimento())
    .subscribe( 
      dados => {
@@ -89,6 +96,8 @@ export class FinanciamentoAluguelComponent implements OnInit {
        console.log("investimento:", dados);
       }
       );
+
+      this.dynamic = 100; 
 
       this.isRelatorio = true;
     }

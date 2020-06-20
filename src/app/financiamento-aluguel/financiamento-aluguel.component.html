@@ -172,6 +172,11 @@
 </div>
 
 
+<div class="row" *ngIf="isCarregar">
+    <div class="col-md-10 offset-md-1">
+        <progressbar [animate]="true" [value]="dynamic" type="success" [striped]="true">{{dynamic}}%</progressbar>
+    </div>
+</div>
 
 
 <div class="row" *ngIf="isRelatorio">
@@ -180,37 +185,43 @@
             <h1 class="display-10">Relatório</h1>
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor original da dívida: </span>
-                R$: 1000
+                <span for="valorOriginal">Valor original da casa: </span>
+                {{financiamento?.valorOriginal | currency:'BRL':true:'1.2-2'}}
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Juros ao mês: </span>
-                R$: 1000
+                <span for="valorOriginal">Valor total do financiamento: </span>
+                {{financiamento?.valorTotal | currency:'BRL':true:'1.2-2'}}
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor da dívida com juros: </span>
-                R$: 1000
+                <span for="valorOriginal">Parcela do financiamento: </span>
+                {{financiamento?.valorParcela | currency:'BRL':true:'1.2-2'}}
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor total do juros: </span>
-                R$: 1000
+                <span for="valorOriginal">juros por mês do financiamento: </span>
+                {{financiamento?.jurosPorMes * 100 | number : '1.2-2'}} %
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor total da dívida: </span>
-                R$: 1000
+                <span for="valorOriginal">Parcela do aluguel: </span>
+                {{aluguel?.valorParcela | currency:'BRL':true:'1.2-2'}}
+            </div>
+
+            <hr>
+            <div class="form-group col-md-12 ml-3">
+                <span for="valorOriginal">Total do investimento: </span>
+                {{investimento?.totalFinal | currency:'BRL':true:'1.2-2'}}
             </div>
             <hr>
             <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Quantidade de meses da dívida: </span>
-                R$: 1000
+                <span for="valorOriginal">Rendimento mensal: </span>
+                {{investimento?.rendimentoMensal * 100 | number : '1.2-2'}} %
             </div>
             <hr>
         </div>

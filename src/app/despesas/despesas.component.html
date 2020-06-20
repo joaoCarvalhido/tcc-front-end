@@ -104,32 +104,32 @@
     </div>
 </div>
 
+<div class="row" *ngIf="isCarregar">
+    <div class="col-md-10 offset-md-1">
+        <progressbar [animate]="true" [value]="dynamic" type="success" [striped]="true">{{dynamic}}%</progressbar>
+    </div>
+</div>
+
 <div class="row" *ngIf="isRelatorio">
     <div class="col-md-10 offset-md-1">
         <div class="jumbotron pb-4">
             <h1 class="display-10">Relatório</h1>
-           <hr>
+            <hr>
             <div class="form-group col-md-12 ml-3">
                 <span for="valorOriginal">Valor original da dívida: </span>
-                R$: {{despesa?.valorOriginal}}
+                R$: {{despesa?.valorOriginal | currency:'BRL':true:'1.2-2'}}
             </div>
 
-           <hr>
+            <hr>
             <div class="form-group col-md-12 ml-3">
                 <span for="valorOriginal">Juros ao mês: </span>
-                {{despesa?.jurosPorMes}} %
+                {{despesa?.jurosPorMes * 100 | number : '1.2-2'}} %
             </div>
 
-           <hr>
+            <hr>
             <div class="form-group col-md-12 ml-3">
                 <span for="valorOriginal">Valor da dívida com juros: </span>
-                R$: {{despesa?.valorTotal}}
-            </div>
-
-           <hr>
-            <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Valor total do juros: </span>
-                R$: {{despesa?.valorTotal - despesa?.valorOriginal}}
+                R$: {{despesa?.valorTotal | currency:'BRL':true:'1.2-2'}}
             </div>
             <hr>
             <div class="form-group col-md-12 ml-3">

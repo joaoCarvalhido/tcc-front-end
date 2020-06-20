@@ -107,6 +107,11 @@
     </div>
 </div>
 
+<div class="row" *ngIf="isCarregar">
+    <div class="col-md-10 offset-md-1">
+        <progressbar [animate]="true" [value]="dynamic" type="success" [striped]="true">{{dynamic}}%</progressbar>
+    </div>
+</div>
 
 <div class="row" *ngIf="isRelatorio">
     <div class="col-md-10 offset-md-1">
@@ -115,33 +120,26 @@
             <hr>
             <div class="form-group col-md-12 ml-3">
                 <span for="valorOriginal">Valor de cada parcela: </span>
-                R$: {{investimento?.valorParcela}}
+                {{investimento?.valorParcela | currency:'BRL':true:'1.2-2'}}
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
                 <span for="valorOriginal">Quantidade de meses: </span>
-                {{investimento?.qntMeses}}
+                {{investimento?.qntMeses | number : '1.2-2'}}
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
                 <span for="valorOriginal">Rendimento mensal: </span>
-                {{investimento?.rendimentoMensal}} %
+                {{investimento?.rendimentoMensal * 100 | number : '1.2-2'}} %
             </div>
 
             <hr>
             <div class="form-group col-md-12 ml-3">
                 <span for="valorOriginal">Total do financiamento: </span>
-                R$: {{investimento?.totalFinal}}
+                {{investimento?.totalFinal | currency:'BRL':true:'1.2-2'}}
             </div>
-
-            <!--
-            <div class="form-group col-md-12 ml-3">
-                <span for="valorOriginal">Apenas rendimento: </span>
-                R$: {{totalFinal}}
-            </div>
-            -->
             <hr>
         </div>
     </div>

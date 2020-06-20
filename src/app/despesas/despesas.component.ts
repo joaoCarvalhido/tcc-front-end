@@ -13,8 +13,10 @@ export class DespesasComponent implements OnInit {
 
   public formDespesa: FormGroup;
   public isRelatorio: boolean = false;
+  public isCarregar: boolean = false;
   private usuario: any;
   public despesa: any;
+  public dynamic: number = 0;
 
   ngOnInit(): void {
     this.setForm();
@@ -43,11 +45,14 @@ export class DespesasComponent implements OnInit {
   }
 
   onRelatorio() {
+    this.isCarregar = true;
     this.formDespesa.get('usuario.idUsuario').setValue(this.usuario.idUsuario);
     this.formDespesa.get('usuario.nome').setValue(this.usuario.nome);
     this.formDespesa.get('usuario.email').setValue(this.usuario.email);
 
     console.log(this.formDespesa.value);
+
+    this.dynamic = 10; 
 
     
     this.tccService.calcularDespesas(this.formDespesa.value)
@@ -58,6 +63,10 @@ export class DespesasComponent implements OnInit {
       }
     );
 
+    this.dynamic = 50;
+
+    this.dynamic = 100;
+    
     this.isRelatorio = true;
     
   }
